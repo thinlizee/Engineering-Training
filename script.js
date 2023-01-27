@@ -5,7 +5,7 @@ console.log("modalButton " + modalButton.outerHTML);
 
 const modalContainer = document.getElementById("modalContainer");
 
-document.getElementById("modalButton").addEventListener("click",(myEvent));
+document.getElementById("modalButton").addEventListener("click",myEvent);
 
 function myEvent(modelContainer) {
    console.log("clicked button!")
