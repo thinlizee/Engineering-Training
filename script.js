@@ -12,5 +12,7 @@ function myEvent(modelContainer) {
     modalContainer.classList.toggle("hidden")
 };
 
-
+ 
+const closeModalButton =  document.getElementsByClassName("closeModalButton");
+console.log("closeModalButton", closeModalButton);
 
