@@ -13,6 +13,6 @@ function myEvent(modelContainer) {
 };
 
  
-const closeModalButton =  document.getElementsByClassName("closeModalButton");
+const closeModalButton =  document.getElementsByClassName("close-modal-button");
 console.log("closeModalButton", closeModalButton);
 
