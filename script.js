@@ -16,3 +16,13 @@ function myEvent(modelContainer) {
 const closeModalButton =  document.getElementsByClassName("close-modal-button");
 console.log("closeModalButton", closeModalButton);
 
+const listCollection = document.getElementsByClassName("close-modal-button");
+
+let i=0; 
+   listCollection.item(i).addEventListener("click", () => {
+      console.log("clicked close modal button!")
+      const modalContainer = document.getElementById("modalContainer")
+      modalContainer.classList.toggle("hidden")
+});
+
+
