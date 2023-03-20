@@ -7,7 +7,7 @@ const modalContainer = document.getElementById("modalContainer");
 
 document.getElementById("modalButton").addEventListener("click",myEvent);
 
-function myEvent(modelContainer) {
+function myEvent(modalContainer) {
    console.log("clicked button!")
     modalContainer.classList.toggle("hidden")
 };
