@@ -7,7 +7,7 @@ const modalContainer = document.getElementById("modalContainer");
 
 document.getElementById("modalButton").addEventListener("click",myEvent);
 
-function myEvent(modalContainer) {
+function myEvent() {
    console.log("clicked button!")
     modalContainer.classList.toggle("hidden")
 };
@@ -16,10 +16,8 @@ function myEvent(modalContainer) {
 const closeModalButton =  document.getElementsByClassName("close-modal-button");
 console.log("closeModalButton", closeModalButton);
 
-const listCollection = document.getElementsByClassName("close-modal-button");
 
-let i=0; 
-   listCollection.item(i).addEventListener("click", () => {
+   closeModalButton[0].addEventListener("click", () => {
       console.log("clicked close modal button!")
       const modalContainer = document.getElementById("modalContainer")
       modalContainer.classList.toggle("hidden")
