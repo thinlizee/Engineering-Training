@@ -39,6 +39,12 @@ let jiraTitles = ['Create a public repository under your GitHub account',
 'JavaScript: Event Listeners - Add Toggle Button Inside of Modal',
 'JavaScript: Functions - Write a function to toggle hidden class on modal'
 ];
-
 console.log('Jira Titles', jiraTitles);
 
+for (let i = 0; i < 5; i++) {
+ console.log(jiraTitles[i]);
+};
+
+for (let i = 0; i < 5; i++) {
+ console.log(jiraLinks[i]);
+};
