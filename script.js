@@ -39,10 +39,20 @@ let jiraTitles = ['Create a public repository under your GitHub account',
 ];
 console.log('Jira Titles', jiraTitles);
 
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < jiraTitles.length; i++) {
  console.log(jiraTitles[i]);
 };
 
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < jiraLinks.length; i++) {
  console.log(jiraLinks[i]);
 };
+
+
+for (let i=0; i< jiraTitles.length; i++) {
+   const jiraObj = { 
+         title : jiraTitles[i],  
+         link : jiraLinks[i]
+}
+console.log("jiraObject : " , jiraObj);
+};
+
