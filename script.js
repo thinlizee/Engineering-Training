@@ -47,12 +47,13 @@ for (let i = 0; i < jiraLinks.length; i++) {
  console.log(jiraLinks[i]);
 };
 
+const jirasArray = [];
 
 for (let i=0; i< jiraTitles.length; i++) {
    const jiraObj = { 
          title : jiraTitles[i],  
          link : jiraLinks[i]
 }
+jirasArray.push(jiraObj);
 console.log("jiraObject : " , jiraObj);
 };
-
