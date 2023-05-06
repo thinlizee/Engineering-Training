@@ -57,3 +57,11 @@ for (let i=0; i< jiraTitles.length; i++) {
 jirasArray.push(jiraObj);
 console.log("jiraObject : " , jiraObj);
 };
+
+const listElement = document.getElementById("grid-container");
+
+ jirasArray.forEach((element) => {
+   let listItem = document.createElement("li");
+   listItem.prepend(listElement);
+   console.log("jira: ", element);
+});
