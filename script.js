@@ -58,10 +58,15 @@ jirasArray.push(jiraObj);
 console.log("jiraObject : " , jiraObj);
 };
 
-const listElement = document.getElementById("grid-container");
-
- jirasArray.forEach((element) => {
+jirasArray.forEach((element) => {
    let listItem = document.createElement("li");
-   listItem.prepend(listElement);
+   let listElement = document.getElementById("grid-container");
+
+   let templateLiterals = `<li class="item"><a href=${element.link}>
+   <i class="bi bi-check-circle-fill"></i>${element.title}</a>
+   </li>`;
+
+   listItem.innerHTML = templateLiterals;
+   listElement.append(listItem);
    console.log("jira: ", element);
 });
