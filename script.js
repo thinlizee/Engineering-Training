@@ -5,17 +5,21 @@ console.log("modalButton " + modalButton.outerHTML);
 
 const modalContainer = document.getElementById("modalContainer");
 
-document.getElementById("modalButton").addEventListener("click",myEvent);
+document.getElementById("modalButton").addEventListener("click",openEvent);
 
 function loadData() { setTimeout(() => {
+   renderData();
    console.log("data loaded");
- }, 1000)};
+ }, 1000)
+ };
 
-function myEvent() {
+
+function openEvent() {
    console.log("clicked button!")
    loadData();
-    modalContainer.classList.toggle("hidden")
+   modalContainer.classList.toggle("hidden");
 };
+
 
  
 const closeModalButton =  document.getElementsByClassName("close-modal-button");
@@ -23,8 +27,7 @@ console.log("closeModalButton", closeModalButton);
 
 
    closeModalButton[0].addEventListener("click", () => {
-      console.log("clicked close modal button!")
-      const modalContainer = document.getElementById("modalContainer")
+      console.log("clicked close modal button!");
       modalContainer.classList.toggle("hidden")
 });
 
@@ -63,6 +66,7 @@ jirasArray.push(jiraObj);
 console.log("jiraObject : " , jiraObj);
 };
 
+function renderData(){
 jirasArray.forEach((element) => {
    let listItem = document.createElement("li");
    let listElement = document.getElementsByClassName("grid-container");
@@ -73,3 +77,5 @@ jirasArray.forEach((element) => {
 
    listElement[0].append(listItem);
   });
+  modalContainer.classList.toggle("hidden");
+};
