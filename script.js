@@ -7,8 +7,13 @@ const modalContainer = document.getElementById("modalContainer");
 
 document.getElementById("modalButton").addEventListener("click",myEvent);
 
+function loadData() { setTimeout(() => {
+   console.log("data loaded");
+ }, 1000)};
+
 function myEvent() {
    console.log("clicked button!")
+   loadData();
     modalContainer.classList.toggle("hidden")
 };
 
