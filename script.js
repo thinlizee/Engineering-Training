@@ -60,12 +60,11 @@ console.log("jiraObject : " , jiraObj);
 
 jirasArray.forEach((element) => {
    let listItem = document.createElement("li");
-   let listElement = document.getElementById("grid-container");
+   let listElement = document.getElementsByClassName("grid-container");
   
    listItem.innerHTML = `<li class="item"><a href=${element.link}>
    <i class="bi bi-check-circle-fill"></i>${element.title}</a>
    </li>`;
 
-   listItem.append(listElement);
-  console.log(listElement);
-});
+   listElement[0].append(listItem);
+  });
