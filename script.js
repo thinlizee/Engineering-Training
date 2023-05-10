@@ -67,15 +67,22 @@ console.log("jiraObject : " , jiraObj);
 };
 
 function renderData(){
+let response = '';
+let listElement = document.getElementsByClassName("grid-container");
+
 jirasArray.forEach((element) => {
-   let listItem = document.createElement("li");
-   let listElement = document.getElementsByClassName("grid-container");
-  
-   listItem.innerHTML = `<li class="item"><a href=${element.link}>
+      response +=                   // concatenating a string vs appending a child to the DOM          
+      `<li class="item"><a href=${element.link}>
+      <i class="bi bi-check-circle-fill"></i>${element.title}</a>
+      </li>`;         
+   /* let listItem = document.createElement("li");
+      listItem.innerHTML = `<li class="item"><a href=${element.link}>
    <i class="bi bi-check-circle-fill"></i>${element.title}</a>
    </li>`;
-
    listElement[0].append(listItem);
-  });
-  modalContainer.classList.toggle("hidden");
+  }); */
+  
+  listElement[0].innerHTML = response;   // accessing the DOM only once vs multiple iterations
+})
+modalContainer.classList.toggle("hidden");
 };
