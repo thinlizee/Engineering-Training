@@ -8,7 +8,12 @@ const modalContainer = document.getElementById("modalContainer");
 document.getElementById("modalButton").addEventListener("click",openEvent);
 
 function loadData() { setTimeout(() => {
-   renderData();
+   let listElement = document.getElementsByClassName("grid-container");
+  renderData();
+   renderData().then((response)=> {
+      listElement.innerHTML = response;
+      modalContainer.classList.toggle("hidden");
+   });
    console.log("data loaded");
  }, 1000)
  };
@@ -67,6 +72,7 @@ console.log("jiraObject : " , jiraObj);
 };
 
 function renderData(){
+   return new Promise((resolve) => {
 let response = '';
 let listElement = document.getElementsByClassName("grid-container");
 
@@ -83,6 +89,8 @@ jirasArray.forEach((element) => {
   }); */
   
   listElement[0].innerHTML = response;   // accessing the DOM only once vs multiple iterations
+  resolve(response);
+});
 })
-modalContainer.classList.toggle("hidden");
+
 };
