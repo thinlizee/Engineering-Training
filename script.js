@@ -7,6 +7,12 @@ const modalContainer = document.getElementById("modalContainer");
 
 document.getElementById("modalButton").addEventListener("click",openEvent);
 
+function openEvent() {
+   console.log("clicked button!")
+   loadData();
+   modalContainer.classList.toggle("hidden");
+};
+
 function loadData() { setTimeout(() => {
    let listElement = document.getElementsByClassName("grid-container");
   renderData();
@@ -17,14 +23,6 @@ function loadData() { setTimeout(() => {
    console.log("data loaded");
  }, 1000)
  };
-
-
-function openEvent() {
-   console.log("clicked button!")
-   loadData();
-   modalContainer.classList.toggle("hidden");
-};
-
 
  
 const closeModalButton =  document.getElementsByClassName("close-modal-button");
@@ -77,9 +75,10 @@ let response = '';
 let listElement = document.getElementsByClassName("grid-container");
 
 jirasArray.forEach((element) => {
+   let { link, title } = element;    //destructuring/deconstructing object into variables
       response +=                   // concatenating a string vs appending a child to the DOM          
-      `<li class="item"><a href=${element.link}>
-      <i class="bi bi-check-circle-fill"></i>${element.title}</a>
+      `<li class="item"><a href=${link}>
+      <i class="bi bi-check-circle-fill"></i>${title}</a>
       </li>`;         
    /* let listItem = document.createElement("li");
       listItem.innerHTML = `<li class="item"><a href=${element.link}>
