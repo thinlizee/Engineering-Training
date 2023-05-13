@@ -7,7 +7,13 @@ const modalContainer = document.getElementById("modalContainer");
 
 document.getElementById("modalButton").addEventListener("click",openEvent);
 
+let dataLoaded = false;
+
 function openEvent() {
+   if (dataLoaded === true )
+   { 
+     return; 
+   }
    console.log("clicked button!")
    loadData();
    modalContainer.classList.toggle("hidden");
@@ -19,6 +25,7 @@ function loadData() { setTimeout(() => {
    renderData().then((response)=> {
       listElement.innerHTML = response;
       modalContainer.classList.toggle("hidden");
+      return dataLoaded=true;
    });
    console.log("data loaded");
  }, 1000)
