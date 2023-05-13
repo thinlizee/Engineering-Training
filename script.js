@@ -15,22 +15,9 @@ function openEvent() {
      return; 
    }
    console.log("clicked button!")
-   loadData();
+   utils.loadData();
    modalContainer.classList.toggle("hidden");
 };
-
-function loadData() { setTimeout(() => {
-   let listElement = document.getElementsByClassName("grid-container");
-  renderData();
-   renderData().then((response)=> {
-      listElement.innerHTML = response;
-      modalContainer.classList.toggle("hidden");
-      return dataLoaded=true;
-   });
-   console.log("data loaded");
- }, 1000)
- };
-
  
 const closeModalButton =  document.getElementsByClassName("close-modal-button");
 console.log("closeModalButton", closeModalButton);
@@ -66,6 +53,43 @@ for (let i = 0; i < jiraLinks.length; i++) {
 };
 
 const jirasArray = [];
+const utils = {
+   loadData(){
+      setTimeout(function (){
+     utils.renderData().then((response)=> {
+      let listElement = document.getElementsByClassName("grid-container");
+         listElement.innerHTML = response;
+         modalContainer.classList.toggle("hidden");
+         dataLoaded=true;
+      });
+      console.log("data loaded");
+    })
+    },
+
+   renderData(){
+      return new Promise((resolve) => {
+   let response = '';
+   let listElement = document.getElementsByClassName("grid-container");
+   
+    jirasArray.forEach((element) => {
+      let { link, title } = element;    //destructuring/deconstructing object into variables
+         response +=                   // concatenating a string vs appending a child to the DOM          
+         `<li class="item"><a href=${link}>
+         <i class="bi bi-check-circle-fill"></i>${title}</a>
+         </li>`;         
+      /* let listItem = document.createElement("li");
+         listItem.innerHTML = `<li class="item"><a href=${element.link}>
+      <i class="bi bi-check-circle-fill"></i>${element.title}</a>
+      </li>`;
+      listElement[0].append(listItem);
+     }); */
+     
+     listElement[0].innerHTML = response;   // accessing the DOM only once vs multiple iterations
+     resolve(response);
+   });
+   })
+   }
+}
 
 for (let i=0; i< jiraTitles.length; i++) {
    const jiraObj = { 
@@ -76,27 +100,3 @@ jirasArray.push(jiraObj);
 console.log("jiraObject : " , jiraObj);
 };
 
-function renderData(){
-   return new Promise((resolve) => {
-let response = '';
-let listElement = document.getElementsByClassName("grid-container");
-
-jirasArray.forEach((element) => {
-   let { link, title } = element;    //destructuring/deconstructing object into variables
-      response +=                   // concatenating a string vs appending a child to the DOM          
-      `<li class="item"><a href=${link}>
-      <i class="bi bi-check-circle-fill"></i>${title}</a>
-      </li>`;         
-   /* let listItem = document.createElement("li");
-      listItem.innerHTML = `<li class="item"><a href=${element.link}>
-   <i class="bi bi-check-circle-fill"></i>${element.title}</a>
-   </li>`;
-   listElement[0].append(listItem);
-  }); */
-  
-  listElement[0].innerHTML = response;   // accessing the DOM only once vs multiple iterations
-  resolve(response);
-});
-})
-
-};
