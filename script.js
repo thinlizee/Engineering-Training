@@ -28,6 +28,15 @@ console.log("closeModalButton", closeModalButton);
       modalContainer.classList.toggle("hidden")
 });
 
+class jiraHandler {
+   constructor(links, title) {
+     this.links = links;
+     this.title = title;
+   }
+ };
+
+
+
 let jiraLinks = ['https://totalwine.atlassian.net/browse/TT-2',
 'https://totalwine.atlassian.net/browse/TT-16',
 'https://totalwine.atlassian.net/browse/TT-17',
@@ -44,6 +53,19 @@ let jiraTitles = ['Create a public repository under your GitHub account',
 ];
 console.log('Jira Titles', jiraTitles);
 
+const jirasArray = [];
+
+for (let i=0; i< jiraTitles.length; i++) {
+   const jiraObj = { 
+         title : jiraTitles[i],  
+         link : jiraLinks[i]
+}
+jirasArray.push(jiraObj);
+console.log("jiraObject : " , jiraObj);
+};
+
+//const jiraHandler = new JiraHandler(jiraLinks, jiraTitles);
+
 for (let i = 0; i < jiraTitles.length; i++) {
  console.log(jiraTitles[i]);
 };
@@ -52,7 +74,7 @@ for (let i = 0; i < jiraLinks.length; i++) {
  console.log(jiraLinks[i]);
 };
 
-const jirasArray = [];
+
 const utils = {
    loadData(){
       setTimeout(function (){
@@ -72,9 +94,9 @@ const utils = {
    let listElement = document.getElementsByClassName("grid-container");
    
     jirasArray.forEach((element) => {
-      let { link, title } = element;    //destructuring/deconstructing object into variables
+      let { links, title } = element;    //destructuring/deconstructing object into variables
          response +=                   // concatenating a string vs appending a child to the DOM          
-         `<li class="item"><a href=${link}>
+         `<li class="item"><a href=${links}>
          <i class="bi bi-check-circle-fill"></i>${title}</a>
          </li>`;         
       /* let listItem = document.createElement("li");
@@ -89,14 +111,4 @@ const utils = {
    });
    })
    }
-}
-
-for (let i=0; i< jiraTitles.length; i++) {
-   const jiraObj = { 
-         title : jiraTitles[i],  
-         link : jiraLinks[i]
-}
-jirasArray.push(jiraObj);
-console.log("jiraObject : " , jiraObj);
 };
-
