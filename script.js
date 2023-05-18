@@ -29,13 +29,15 @@ console.log("closeModalButton", closeModalButton);
 });
 
 class jiraHandler {
-   constructor(links, title) {
+   constructor(links, title ) {
      this.links = links;
      this.title = title;
+    // this.jirasObject = [];
    }
- };
+   //createJiraObject(){
 
-
+   };
+ 
 
 let jiraLinks = ['https://totalwine.atlassian.net/browse/TT-2',
 'https://totalwine.atlassian.net/browse/TT-16',
@@ -64,8 +66,6 @@ jirasArray.push(jiraObj);
 console.log("jiraObject : " , jiraObj);
 };
 
-//const jiraHandler = new JiraHandler(jiraLinks, jiraTitles);
-
 for (let i = 0; i < jiraTitles.length; i++) {
  console.log(jiraTitles[i]);
 };
@@ -76,7 +76,7 @@ for (let i = 0; i < jiraLinks.length; i++) {
 
 
 const utils = {
-   loadData(){
+   loadData: function (){
       setTimeout(function (){
      utils.renderData().then((response)=> {
       let listElement = document.getElementsByClassName("grid-container");
@@ -85,10 +85,10 @@ const utils = {
          dataLoaded=true;
       });
       console.log("data loaded");
-    })
+    },1000);
     },
 
-   renderData(){
+   renderData: function(){
       return new Promise((resolve) => {
    let response = '';
    let listElement = document.getElementsByClassName("grid-container");
