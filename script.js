@@ -27,17 +27,27 @@ console.log("closeModalButton", closeModalButton);
       console.log("clicked close modal button!");
       modalContainer.classList.toggle("hidden")
 });
+//____________________________________________________________
+const jirasArray = [];
 
 class jiraHandler {
    constructor(links, title ) {
      this.links = links;
      this.title = title;
-    // this.jirasObject = [];
+     this.jirasObj = [];
+     this.createJiraObject();
    }
-   //createJiraObject(){
+   createJiraObject(){
+      for (let i = 0; i < this.titles.length; i++) {
+      this.jirasObj.push({
+         link: this.links[i],
+         title: this.titles[i],
+      });
+   }
+      return this.jirasObj;
+}
+};
 
-   };
- 
 
 let jiraLinks = ['https://totalwine.atlassian.net/browse/TT-2',
 'https://totalwine.atlassian.net/browse/TT-16',
@@ -55,7 +65,7 @@ let jiraTitles = ['Create a public repository under your GitHub account',
 ];
 console.log('Jira Titles', jiraTitles);
 
-const jirasArray = [];
+//___________________________________________________________
 
 for (let i=0; i< jiraTitles.length; i++) {
    const jiraObj = { 
