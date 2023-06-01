@@ -9,6 +9,10 @@ document.getElementById("modalButton").addEventListener("click",openEvent);
 
 let dataLoaded = false;
 
+let jiraTemplate = {
+   icon: "bi bi-check-circle-fill"
+};
+
 const utils = {
    loadData: function (){
       setTimeout(function (){
@@ -28,11 +32,12 @@ const utils = {
    let listElement = document.getElementsByClassName("grid-container");
    
     jirasArray.forEach((element) => {
-      let { links, title } = element;    //destructuring/deconstructing object into variables
+      let { links, title, icon } = element;    //destructuring/deconstructing object into variables
          response +=                   // concatenating a string vs appending a child to the DOM          
          `<li class="item"><a href=${links}>
          <i class="bi bi-check-circle-fill"></i>${title}</a>
-         </li>`;         
+         <i class="${jiraTemplate.icon}"></i>
+         </li>`;        
       /* let listItem = document.createElement("li");
          listItem.innerHTML = `<li class="item"><a href=${element.link}>
       <i class="bi bi-check-circle-fill"></i>${element.title}</a>
@@ -108,7 +113,8 @@ console.log('Jira Titles', jiraTitles);
 for (let i=0; i< jiraTitles.length; i++) {
    const jirasObj = { 
          title : jiraTitles[i],  
-         link : jiraLinks[i]
+         link : jiraLinks[i],
+         ...jiraTemplate
 }
 jirasArray.push(jirasObj);
 console.log("jirasObj : " , jirasObj);
