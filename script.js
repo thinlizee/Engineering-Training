@@ -35,8 +35,8 @@ const utils = {
       let { links, title, icon } = element;    //destructuring/deconstructing object into variables
          response +=                   // concatenating a string vs appending a child to the DOM          
          `<li class="item"><a href=${links}>
-         <i class="bi bi-check-circle-fill"></i>${title}</a>
          <i class="${jiraTemplate.icon}"></i>
+        </i>${title}</a>
          </li>`;        
       /* let listItem = document.createElement("li");
          listItem.innerHTML = `<li class="item"><a href=${element.link}>
