@@ -5,9 +5,8 @@ console.log("modalButton " + modalButton.outerHTML);
 
 const modalContainer = document.getElementById("modalContainer");
 
-document.getElementById("modalButton").addEventListener("click",openEvent);
-
-let dataLoaded = false;
+//document.getElementById("modalButton").addEventListener("click",initModalButton);
+//let dataLoaded = false;
 
 let jiraTemplate = {icon: "bi bi-check-circle-fill"};
 let errorJiraTemplate = {icon: "bi bi-x-circle"};
@@ -29,16 +28,17 @@ let jiraTitles = ['Create a public repository under your GitHub account',
 console.log('Jira Titles', jiraTitles);
 
 const utils = {
-   loadData: function (){
+   loadData: function (callback){
       setTimeout(function (){
      utils.renderData().then((response)=> {
       let listElement = document.getElementsByClassName("grid-container");
          listElement.innerHTML = response;
          modalContainer.classList.toggle("hidden");
-         dataLoaded=true;
+         //dataLoaded=true;
       });
       console.log("data loaded");
     },1000);
+    callback();
     },
 
    renderData: function(){
@@ -63,16 +63,20 @@ const utils = {
    }
 };
 
-function openEvent() {
-   if (dataLoaded === true )
-   { 
-     return; 
+function initModalButton(){
+let dataLoaded = false;
+modalButton.addEventListener("click", ()=>{
+   if (dataLoaded == true ){
+      return;
    }
-   console.log("clicked button!")
-   utils.loadData();
+   console.log("button clicked!");
    modalContainer.classList.toggle("hidden");
-};
- 
+   utils.loadData(()=>{
+      dataLoaded = true;
+      });
+   }
+)};
+initModalButton();
 const closeModalButton =  document.getElementsByClassName("close-modal-button");
 console.log("closeModalButton", closeModalButton);
 
@@ -134,4 +138,3 @@ function getRandomIntInclusive(min, max) {
    max = Math.floor(max);
    return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
  }
-
