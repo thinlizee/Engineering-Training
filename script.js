@@ -1,3 +1,5 @@
+(async function() {
+   
 console.log("Engineering Training");
 
 const modalButton = document.getElementById("modalButton");
@@ -34,6 +36,7 @@ const utils = {
       let listElement = document.getElementsByClassName("grid-container");
          listElement.innerHTML = response;
          modalContainer.classList.toggle("hidden");
+         return response;
          //dataLoaded=true;
       });
       console.log("data loaded");
@@ -64,19 +67,22 @@ const utils = {
 };
 
 function initModalButton(){
-let dataLoaded = false;
-modalButton.addEventListener("click", ()=>{
-   if (dataLoaded == true ){
-      return;
-   }
-   console.log("button clicked!");
-   modalContainer.classList.toggle("hidden");
-   utils.loadData(()=>{
-      dataLoaded = true;
-      });
-   }
+   return new Promise((resolve)=>{
+      let dataLoaded = false;
+      modalButton.addEventListener("click", ()=>{
+         if (dataLoaded == true ){
+            return;
+         }
+         console.log("button clicked!");
+         modalContainer.classList.toggle("hidden");
+         utils.loadData(()=>{
+            resolve();
+            dataLoaded = true;
+            });
+         }
+   )}
 )};
-initModalButton();
+
 const closeModalButton =  document.getElementsByClassName("close-modal-button");
 console.log("closeModalButton", closeModalButton);
 
@@ -137,4 +143,8 @@ function getRandomIntInclusive(min, max) {
    min = Math.ceil(min);
    max = Math.floor(max);
    return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
- }
+}
+console.log("BEFORE initModalButton is called");
+await initModalButton();
+console.log("AFTER initModalButton is called");
+})();
