@@ -30,8 +30,11 @@ let jiraTitles = ['Create a public repository under your GitHub account',
 console.log('Jira Titles', jiraTitles);
 
 const utils = {
-   loadData: function (callback){
-      setTimeout(function (){
+   loadData: async function (callback) {
+         const response = await fetch('/getJiraTickets');
+         const data = await response.json();
+         console.log('data', data);
+     setTimeout(function (){
      utils.renderData().then((response)=> {
       let listElement = document.getElementsByClassName("grid-container");
          listElement.innerHTML = response;
