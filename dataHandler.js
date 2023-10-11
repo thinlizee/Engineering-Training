@@ -1,4 +1,4 @@
-//export default jiraHandler;
+
 
 let jiraLinks = ['https://totalwine.atlassian.net/browse/TT-2',
 'https://totalwine.atlassian.net/browse/TT-16',
