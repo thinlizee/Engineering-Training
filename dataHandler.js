@@ -1,5 +1,4 @@
 
-
 let jiraLinks = ['https://totalwine.atlassian.net/browse/TT-2',
 'https://totalwine.atlassian.net/browse/TT-16',
 'https://totalwine.atlassian.net/browse/TT-17',
@@ -16,30 +15,38 @@ let jiraTitles = ['Create a public repository under your GitHub account',
 ];
 console.log('Jira Titles', jiraTitles);
 
+const errorJiraTemplate = { icon: 'bi bi-x-circle' };
+const jiraTemplate = { icon: 'bi bi-check-circle-fill' };
 
-class jiraHandler {
+function getIcon() {
+   let rNum = getRandomIntInclusive(0,2);
+   return rNum == 1 ? jiraTemplate : errorJiraTemplate;
+ }
+
+class DataHandler {
     constructor(links, title ) {
       this.links = links;
       this.title = title;
       this.jirasObj = [];
       this.createJiraObject();
-    }};   
-    async function createJiraObject() { 
-      for (let i = 0; i < this.titles.length; i++) {
+    } 
+    createJiraObject() { 
+      for (let i = 0; i < this.title.length; i++) {
       let icon =  getIcon()
          this.jirasObj.push({
          link: this.links[i],
-         title: this.titles[i],
+         title: this.title[i],
          ...icon
       });
       return this.jirasObj;
-   }; 
-
+     }
+ } }; 
 
 function getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
- }
-}
+   min = Math.ceil(min);
+   max = Math.floor(max);
+   return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+};
 
+const dataHandler = new DataHandler(jiraLinks, jiraTitles);
+module.exports = dataHandler;

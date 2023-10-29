@@ -7,8 +7,8 @@ console.log("modalButton " + modalButton.outerHTML);
 
 const modalContainer = document.getElementById("modalContainer");
 
-//document.getElementById("modalButton").addEventListener("click",initModalButton);
-//let dataLoaded = false;
+document.getElementById("modalButton").addEventListener("click",initModalButton);
+let dataLoaded = false;
 
 
 const utils = {
@@ -26,7 +26,7 @@ const utils = {
       });
       console.log("data loaded");
     },1000);
-    callback();
+     callback();
     },
 
    renderData: function(){
@@ -79,12 +79,7 @@ closeModalButton[0].addEventListener("click", () => {
 const jirasArray = [];
 
 
- 
 
-function getIcon() {
-   let rNum = getRandomIntInclusive(0,2);
-   return rNum == 1 ? jiraTemplate : errorJiraTemplate;
- }
 //___________________________________________________________
 
 for (let i=0; i< jiraTitles.length; i++) {
@@ -110,7 +105,7 @@ for (let i = 0; i < jiraLinks.length; i++) {
 
 
 console.log("BEFORE initModalButton is called");
-await initModalButton();
+ await initModalButton();
 console.log("AFTER initModalButton is called");
 });
 
