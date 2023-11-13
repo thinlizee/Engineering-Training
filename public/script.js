@@ -13,7 +13,7 @@ let dataLoaded = false;
 
 const utils = {
    loadData: async function (callback) {
-         const response = await fetch('/getJiraTickets');
+         const response = await fetch('/dataHandler');
          const data = await response.json();
          console.log('data', data);
      setTimeout(function (){

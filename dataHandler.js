@@ -38,8 +38,8 @@ class DataHandler {
          title: this.title[i],
          ...icon
       });
-      return this.jirasObj;
      }
+     return this.jirasObj;
  } }; 
 
 function getRandomIntInclusive(min, max) {
