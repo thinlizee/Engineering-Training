@@ -50,3 +50,30 @@ function getRandomIntInclusive(min, max) {
 
 const dataHandler = new DataHandler(jiraLinks, jiraTitles);
 module.exports = dataHandler;
+
+const { Octokit } = require("@octokit/rest");
+const { response } = require('express');
+
+const octokit = new Octokit({ 
+  auth: process.env.GITHUB_TOKEN,
+  baseUrl: 'https://api.github.com',
+  log: {
+      debug: () => {},
+      info: () => {},
+      warn: console.warn,
+      error: console.error
+  },
+  request: {
+      agent: undefined,
+      fetch: undefined,
+      timeout: 0
+  }
+});
+
+octokit.rest.repos.listCommits({
+  owner: "thinlizee",
+  repo: "engineering-training",
+})
+.then((response) => {
+  console.log(response);
+});
