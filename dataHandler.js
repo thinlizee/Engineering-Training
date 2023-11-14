@@ -1,3 +1,4 @@
+const { Octokit } = require("@octokit/rest");
 
 let jiraLinks = ['https://totalwine.atlassian.net/browse/TT-2',
 'https://totalwine.atlassian.net/browse/TT-16',
@@ -29,6 +30,7 @@ class DataHandler {
       this.title = title;
       this.jirasObj = [];
       this.createJiraObject();
+      this.fetchGitHubData();
     } 
     createJiraObject() { 
       for (let i = 0; i < this.title.length; i++) {
@@ -40,7 +42,23 @@ class DataHandler {
       });
      }
      return this.jirasObj;
- } }; 
+ } 
+    fetchGitHubData() {
+      return new Promise((resolve)=>{
+        const octokit = new Octokit({
+          auth: process.env.GITHUB_TOKEN
+        });
+      octokit.rest.repos.listCommits({
+      owner: "thinlizee",
+      repo: "engineering-training",
+      })
+    .then((response) => {
+      for (let i = 0; i < 20; i++) {
+        console.log("Commit message: ", response.data[i].commit.message);
+      }}
+    )}
+    )}
+}; 
 
 function getRandomIntInclusive(min, max) {
    min = Math.ceil(min);
@@ -50,9 +68,6 @@ function getRandomIntInclusive(min, max) {
 
 const dataHandler = new DataHandler(jiraLinks, jiraTitles);
 module.exports = dataHandler;
-
-const { Octokit } = require("@octokit/rest");
-const { response } = require('express');
 
 const octokit = new Octokit({ 
   auth: process.env.GITHUB_TOKEN,
@@ -68,12 +83,4 @@ const octokit = new Octokit({
       fetch: undefined,
       timeout: 0
   }
-});
-
-octokit.rest.repos.listCommits({
-  owner: "thinlizee",
-  repo: "engineering-training",
-})
-.then((response) => {
-  console.log(response);
 });
