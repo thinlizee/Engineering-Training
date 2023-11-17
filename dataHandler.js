@@ -1,4 +1,6 @@
 const { Octokit } = require("@octokit/rest");
+require('dotenv').config()
+var JiraApi = require('jira-client');
 
 let jiraLinks = ['https://totalwine.atlassian.net/browse/TT-2',
 'https://totalwine.atlassian.net/browse/TT-16',
@@ -84,3 +86,21 @@ const octokit = new Octokit({
       timeout: 0
   }
 });
+
+var jira = new JiraApi({
+  protocol: "https",
+  host: "totalwine.atlassian.net",
+  username: process.env.JIRA_USERNAME,
+  password: process.env.JIRA_TOKEN,
+  apiVersion: "2",
+  strictSSL: true,
+});
+
+jira
+  .findIssue('TT-140')
+  .then(function(issue) {
+    console.log('Status: ' + issue.fields.status.name);
+  })
+  .catch(function(err) {
+    console.error(err);
+  });
