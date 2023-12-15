@@ -39,18 +39,21 @@ class DataHandler {
     for (let i = 0; i < response.data.length; i++) {
       const regex = /[A-Z][A-Z]+-\d+/g;
       const ticketNum = response.data[i].commit.message.match(regex);
-
+           
       if (ticketNum !== null && jiraNums.indexOf(ticketNum[0]) == -1) {
         jiraNums.push(ticketNum[0]);
-      }
-    }
-  } 
+     } 
+    } 
+    for(let ts = 0; ts < response.data.length; ts++) { 
+      const summary = response.data[ts].commit.message;
+      console.log('summary: ' + summary.substring(7));
+  };
+}  
    catch (error) {
     console.log("Error getting data:", error.message);
   } 
-  console.log(jiraNums);
 }
-}
+};
 
 function getRandomIntInclusive(min, max) {
    min = Math.ceil(min);
