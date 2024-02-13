@@ -34,7 +34,7 @@ const utils = {
    let response = '';
    let listElement = document.getElementsByClassName("grid-container");
    
-    jirasArray.forEach((element) => {
+    jirasArray.forEach(async (element) => {
       let { link, title, icon } = element;            
          response += `<li class="grid-container"><i class="${icon}"></i><a href="${link}">${title}</a></li>`;  
       //response += `<li class="grid-container"><i class="bi bi-check-circle-fill"></i><a href="${link}">${title}</a></li>`;   
@@ -45,7 +45,7 @@ const utils = {
       listElement[0].append(listItem);
      }); */
      listElement[0].innerHTML = response;   // accessing the DOM only once vs multiple iterations
-     resolve(response);
+     await resolve(response);
    });
    })
    }
@@ -92,20 +92,20 @@ for (let i=0; i< jiraTitles.length; i++) {
     Object.assign(jirasObj, icon);
 
 jirasArray.push(jirasObj);
-console.log("jirasObj : " , jirasObj);
+// console.log("jirasObj : " , jirasObj);
 };
 
 for (let i = 0; i < jiraTitles.length; i++) {
- console.log(jiraTitles[i]);
+//  console.log(jiraTitles[i]);
 };
 
 for (let i = 0; i < jiraLinks.length; i++) {
- console.log(jiraLinks[i]);
+//  console.log(jiraLinks[i]);
 };
 
 
-console.log("BEFORE initModalButton is called");
+// console.log("BEFORE initModalButton is called");
  await initModalButton();
-console.log("AFTER initModalButton is called");
+// console.log("AFTER initModalButton is called");
 });
 

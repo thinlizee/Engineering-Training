@@ -8,8 +8,8 @@ const jiraTemplate = { icon: 'bi bi-check-circle-fill' };
 let jiraNums = [];
 class DataHandler {
     constructor(links, title ) {
-      this.links = links;
-      this.title = title;
+      this.links = links || [];
+      this.title = title || [];
       this.jirasObj = [];
       this.createJiraObject();
       this.fetchGitHubData();
@@ -35,7 +35,7 @@ class DataHandler {
       owner: "thinlizee",
       repo: "engineering-training",
     });
-
+   // console.log('response', JSON.stringify(response));
     for (let i = 0; i < response.data.length; i++) {
       const regex = /[A-Z][A-Z]+-\d+/g;
       const ticketNum = response.data[i].commit.message.match(regex);
@@ -44,13 +44,15 @@ class DataHandler {
         jiraNums.push(ticketNum[0]);
      } 
     } 
-    for(let ts = 0; ts < response.data.length; ts++) { 
-      const summary = response.data[ts].commit.message;
-      console.log('summary: ' + summary.substring(7));
-  };
-}  
+     console.log(jiraNums);
+
+     for(let ts = 0; ts < 21; ts++) { 
+       const message = response.data[ts].commit.message;
+      console.log('summary: ' + message + '\n');
+} 
+  } 
    catch (error) {
-    console.log("Error getting data:", error.message);
+      console.log("Error getting data:", error.message);
   } 
 }
 };
@@ -67,7 +69,7 @@ let jiraLinks = ['https://totalwine.atlassian.net/browse/TT-2',
 'https://totalwine.atlassian.net/browse/TT-18',
 'https://totalwine.atlassian.net/browse/TT-19'
 ];
-console.log('Jira Links', jiraLinks);
+// console.log('Jira Links', jiraLinks);
 
 let jiraTitles = ['Create a public repository under your GitHub account',
 'Create a new script file, and import it into index.html and add a console log',
@@ -75,14 +77,14 @@ let jiraTitles = ['Create a public repository under your GitHub account',
 'JavaScript: Event Listeners - Add Toggle Button Inside of Modal',
 'JavaScript: Functions - Write a function to toggle hidden class on modal'
 ];
-console.log('Jira Titles', jiraTitles);
+// console.log('Jira Titles', jiraTitles);
 
 function getIcon() {
   let rNum = getRandomIntInclusive(0,2);
   return rNum == 1 ? jiraTemplate : errorJiraTemplate;
 };
 
-const dataHandler = new DataHandler(jiraLinks, jiraTitles);
+const dataHandler = new DataHandler();
 module.exports = dataHandler;
 
 const octokit = new Octokit({ 
